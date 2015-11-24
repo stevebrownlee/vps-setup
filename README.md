@@ -43,7 +43,7 @@ Create another terminal window. Open up your public key file that got created wh
 cat ~/.ssh/id_rsa.pub
 ```
 
-Copy what got output to the console.
+Copy what got output to the console. Then in your SSH session, execute these commands.
 
 ```
 mkdir /home/{{ uername }}/.ssh
@@ -66,14 +66,27 @@ root    ALL=(ALL:ALL) ALL
 {{ username }}   ALL=(ALL) ALL
 ```
 
-Save that file and then stop your SSH session by executing the command `exit`.
+Save the file with `esc`, `:x`.
 
-Then you can connect to your VPS with your
+### Tranferring ownership
+
+Set the new user as owner of the home directory: `chown -R {{ username }} /home/{{ username }}`
+
+
+## Using your account
+
+Terminate your SSH session as root with the `exit` command. Then you can try to create a new SSH session with your new account: `ssh {{ username }}@{{ ip }}`.
 
 ## Base installs
 
-1. Install base packages `sudo apt-get curl wget git ufw redis-server nodejs npm`
+1. Install base packages `sudo apt-get install curl wget unzip git ufw redis-server nodejs npm`
 1. Create symlink for Node: `ln -s /usr/bin/nodejs /usr/bin/node`
-1. Install useful NPM packages: `sudo npm install -f nave bower grunt-cli http-server`
+1. Install useful NPM packages: `sudo npm install -g nave bower grunt-cli http-server express express-generator sails pm2`
+
+## Firewall
+
+Now you'll set up ufw (uncomplicated firewall). Follow [the instructions](https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server) on the DigitalOcean Community page. We're going to open up ports 22 and 80.
+
+
 
 
