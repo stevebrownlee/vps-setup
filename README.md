@@ -47,17 +47,10 @@ Your first step is to create an account for yourself.
 
 #### Adding SSH key
 
-Create another terminal window. Open up your public key file that got created when you created your SSH key on your local machine.
+On your host machine, execute the following command.
 
 ```
-cat ~/.ssh/id_rsa.pub
-```
-
-Copy what got output to the console. Then in your SSH session, execute these commands.
-
-```
-mkdir /home/{{ uername }}/.ssh
-vi /home/{{ username }}/.ssh/authorized_keys
+cat ~/.ssh/id_rsa.pub | ssh [username you created above]@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
 ```
 
 #### sudo
