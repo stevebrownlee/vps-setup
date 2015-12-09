@@ -89,7 +89,18 @@ Terminate your SSH session as root with the `exit` command. Then you can try to 
 
 ## Firewall
 
-Now you'll set up ufw (uncomplicated firewall). Follow [the instructions](https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server) on the DigitalOcean Community page. We're going to open up ports 22 and 80.
+Now you'll set up ufw (uncomplicated firewall). Enter in the following commands.
+
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow www
+sudo ufw enable
+sudo ufw status verbose
+```
+
+Your server is now protected by a firewall that will deny **any** traffic other than SSH connections and web traffic.
 
 
 
