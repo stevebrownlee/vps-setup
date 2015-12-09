@@ -84,7 +84,7 @@ Terminate your SSH session as root with the `exit` command. Then you can try to 
 
 1. Run the command `sudo apt-get update`
 1. Install base packages `sudo apt-get install curl wget unzip git ufw redis-server nodejs npm`
-1. Create symlink for Node: `ln -s /usr/bin/nodejs /usr/bin/node`
+1. Create symlink for Node: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
 1. Install useful NPM packages: `sudo npm install -g nave bower grunt-cli http-server express express-generator sails pm2`
 
 ## Firewall
