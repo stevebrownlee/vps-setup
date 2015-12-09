@@ -21,7 +21,17 @@ eval `ssh-agent`
 ssh-add ~/.ssh/id_rsa
 ```
 
-In your CLI, execute the command `ssh root@{{ your droplet IP address }}`. This will open up a secure shell connection to your droplet. 
+In your CLI, execute the command `ssh root@[your droplet IP address but not the brackets]`. This will open up a secure shell connection to your droplet.
+
+You will be prompted for the root password, which likely was never sent to you, so you will need to go back to the Digital Ocean site and click on your Droplet, and then the "Reset root password" button. They will email you a new root password.
+
+After you type that in, you will gain access. Yay!
+
+Now type `exit` to log out and then execute the following command to add your public key to your remote machine. This will use SSH to handle authentication and you'll never need to enter a password again for **root**.
+
+```
+cat ~/.ssh/id_rsa.pub | ssh root@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
+```
 
 ## Creating a user account
 
