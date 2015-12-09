@@ -71,7 +71,7 @@ root    ALL=(ALL:ALL) ALL
 
 Save the file with `esc`, `:x`.
 
-### Tranferring ownership
+### Transferring ownership
 
 Set the new user as owner of the home directory: `chown -R {{ username }} /home/{{ username }}`
 
