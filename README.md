@@ -39,6 +39,8 @@ Your first step is to create an account for yourself.
 
 1. Decide on a username
 1. `mkdir /home/{{ username }}`
+1. `mkdir /home/{{ username }}/.ssh`
+1. `touch /home/{{ username }}/.ssh/authorized_keys`
 1. `useradd {{ username }} --home /home/{{ username }}`
 1. `passwd {{ username}}` and you'll need to enter in the password for the user twice
 1. Change the default shell with `chsh -s /bin/bash {{ username }}`
