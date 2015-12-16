@@ -3,14 +3,14 @@
 ## Prerequisites
 
 1. Register a domain name with [Google Domains](https://domains.google.com/about/), [Gandi.net](http://www.gandi.net/) or other registrar. Look at `.com`, and `.me` domains for your personal site.
-2. [Sign up](https://www.digitalocean.com/pricing/) for a DigitalOcean account, and purchase a $5/month VPS.
+2. [Sign up](https://www.digitalocean.com/pricing/) for a DigitalOcean account.
 
 ## Getting ready
 
 1. Get yourself a shiny, [new SSH key](https://help.github.com/articles/generating-ssh-keys/). You can use an SSH key to connect to Github, as well as your VPS.
-1. When setting up your Droplet, pick the *Ubuntu 14.04 x64* image to be the base operating system.
-2. Add your SSH key to your DigitalOcean account. It's under `Settings > Security`.
-2. While you're there, set up 2FA for your DigitalOcean account. Yeah, I know 2FA seems like overkill... until someone uses a brute force attack to log into your account, change all of your security protocols, installs tons of malware on your domain, and then tries to blackmail you into getting it all back.
+1. Add your SSH key to your DigitalOcean account. It's under `Settings > Security`.
+1. Get the $5/mo VPS type, and then then setting up your Droplet, pick the *Ubuntu 14.04 x64* image to be the base operating system.
+1. While you're there, set up 2FA for your DigitalOcean account. Yeah, I know 2FA seems like overkill... until someone uses a brute force attack to log into your account, change all of your security protocols, installs tons of malware on your domain, and then tries to blackmail you into getting it all back.
 
 ## Accessing your VPS
 
