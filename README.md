@@ -7,10 +7,10 @@
 
 ## Getting ready
 
-1. Get yourself a shiny, [new SSH key](https://help.github.com/articles/generating-ssh-keys/). You can use an SSH key to connect to Github, as well as your VPS.
+1. Get yourself a shiny, [new SSH key](https://help.github.com/articles/generating-ssh-keys/). You only need to go to step 3 in the Github documentation. You can use an SSH key to connect to Github, as well as your VPS.
 1. Add your SSH key to your DigitalOcean account. It's under `Settings > Security`.
-1. Get the $5/mo VPS type, and then then setting up your Droplet, pick the *Ubuntu 14.04 x64* image to be the base operating system.
 1. While you're there, set up 2FA for your DigitalOcean account. Yeah, I know 2FA seems like overkill... until someone uses a brute force attack to log into your account, change all of your security protocols, installs tons of malware on your domain, and then tries to blackmail you into getting it all back.
+1. Create a Droplet. Select the $5/mo VPS type, accept all the default and then create it at the bottom.
 
 ## Accessing your VPS
 
