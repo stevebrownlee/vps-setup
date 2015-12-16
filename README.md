@@ -47,8 +47,6 @@ Your first step is to create an account for yourself.
 
 ### Account security
 
-#### Adding SSH key
-
 #### sudo
 
 Allow new account to gain administrative privileges.
@@ -71,6 +69,7 @@ Save the file with `esc`, `:x`.
 
 Set the new user as owner of the home directory: `chown -R {{ username }} /home/{{ username }}`
 
+#### Adding SSH key
 
 On your host machine, execute the following command.
 
