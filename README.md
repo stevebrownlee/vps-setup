@@ -49,12 +49,6 @@ Your first step is to create an account for yourself.
 
 #### Adding SSH key
 
-On your host machine, execute the following command.
-
-```
-cat ~/.ssh/id_rsa.pub | ssh [username you created above]@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
-```
-
 #### sudo
 
 Allow new account to gain administrative privileges.
@@ -76,6 +70,13 @@ Save the file with `esc`, `:x`.
 ### Transferring ownership
 
 Set the new user as owner of the home directory: `chown -R {{ username }} /home/{{ username }}`
+
+
+On your host machine, execute the following command.
+
+```
+cat ~/.ssh/id_rsa.pub | ssh [username you created above]@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
+```
 
 
 ## Using your account
