@@ -7,10 +7,10 @@
 
 ## Getting ready
 
-1. Get yourself a shiny, [new SSH key](https://help.github.com/articles/generating-ssh-keys/). You only need to go to step 3 in the Github documentation. You can use an SSH key to connect to Github, as well as your VPS.
-1. Add your SSH key to your DigitalOcean account. It's under `Settings > Security`.
+1. Follow the direction from Github's documentation to get yourself a shiny, [new SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/).
+1. Add your SSH key to your DigitalOcean account. It's under `Settings > Security`. You get to settings from the gear icon in the upper-right corner of the navigation.
 1. While you're there, set up 2FA for your DigitalOcean account. Yeah, I know 2FA seems like overkill... until someone uses a brute force attack to log into your account, change all of your security protocols, installs tons of malware on your domain, and then tries to blackmail you into getting it all back.
-1. Create a Droplet. Select the $5/mo VPS type, accept all the default and then create it at the bottom.
+1. Create a Droplet. Select the $5/mo VPS type, accept all the defaults options they provide and **make sure you add your SSH key** by clicking that checkbox near the bottom of the screen. Then click the button to create your VM at the bottom.
 
 ## Accessing your VPS
 
@@ -23,7 +23,11 @@ ssh-add ~/.ssh/id_rsa
 
 In your CLI, execute the command `ssh root@[your droplet IP address but not the brackets]`. This will open up a secure shell connection to your droplet.
 
-You will be prompted for the root password, which likely was never sent to you, so you will need to go back to the Digital Ocean site and click on your Droplet, and then the "Reset root password" button. They will email you a new root password.
+#### If you are prompted for the root password
+
+> **Note:** If you were not prompted for your password, ignore this section
+
+You will need to go back to the Digital Ocean site and click on your Droplet, and then the "Reset root password" button. They will email you a new root password.
 
 After you type that in, you will gain access. Yay!
 
@@ -55,7 +59,9 @@ Allow new account to gain administrative privileges.
 sudo visudo
 ```
 
-Then find the section where user privileges are specified. You should see a configuration section like this one. Add your new user account to be able to use `sudo`.
+This will open up a file in the Nano file editor, not vim. You cna just start editing the file without the need to hit the `i` key.
+
+Find the section where user privileges are specified. You should see a configuration section like this one. Add your new user account to be able to use `sudo`.
 
 ```
 # User privilege specification
@@ -63,7 +69,11 @@ root    ALL=(ALL:ALL) ALL
 {{ username }}   ALL=(ALL) ALL
 ```
 
-Save the file with `esc`, `:x`.
+After you've added that line in...
+
+1. Hit `ctrl+x` to exit.
+1. You'll be prompted to save the file, so just hit enter.
+1. Then press `y` to verify the save.
 
 ### Transferring ownership
 
@@ -71,7 +81,7 @@ Set the new user as owner of the home directory: `chown -R {{ username }} /home/
 
 #### Adding SSH key
 
-On your host machine, execute the following command.
+Open up a new terminal instance so that you have a command line on your local computer. Then execute the following command. This copies your public key from your local machine to the droplet.
 
 ```
 cat ~/.ssh/id_rsa.pub | ssh [username you created above]@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
@@ -80,14 +90,17 @@ cat ~/.ssh/id_rsa.pub | ssh [username you created above]@[your.ip.address.here] 
 
 ## Using your account
 
-Terminate your SSH session as root with the `exit` command. Then you can try to create a new SSH session with your new account: `ssh {{ username }}@{{ ip }}`.
+1. Terminate your remote SSH session as root with the `exit` command.
+1. Now create a new SSH session with your new account: `ssh {{ username }}@{{ ip }}`.
+
+You are now logged into your DigitalOcean virtual machine on your user account. You're ready to start installing things.
 
 ## Base installs
 
 1. Run the command `sudo apt-get update`
 1. Install base packages `sudo apt-get install curl wget unzip git ufw redis-server nodejs npm`
 1. Create symlink for Node: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
-1. Install useful NPM packages: `sudo npm install -g nave bower grunt-cli http-server express express-generator sails pm2`
+1. Install useful NPM packages: `sudo npm install -g nave bower grunt-cli http-server express express-generator pm2`
 
 ## Firewall
 
