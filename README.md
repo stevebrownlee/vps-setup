@@ -1,5 +1,7 @@
 # Setting yourself up on a VPS
 
+> **Pro tip:** Everywhere you see curly braces in these instructions, for example `{enter ip address here}`, the braces are placeholders indicating that there should a value there. Do not type in the braces.
+
 ## Prerequisites
 
 1. Register a domain name with [Google Domains](https://domains.google.com/about/), [Gandi.net](http://www.gandi.net/) or other registrar. Look at `.com`, and `.me` domains for your personal site.
@@ -14,14 +16,14 @@
 
 ## Accessing your VPS
 
-Make sure that your private SSH key is currently loaded into your bash session.
+Make sure that your private SSH key is currently loaded into your bash session by typing the following commands into your terminal.
 
 ```
 eval `ssh-agent`
 ssh-add ~/.ssh/id_rsa
 ```
 
-In your CLI, execute the command `ssh root@[your droplet IP address but not the brackets]`. This will open up a secure shell connection to your droplet.
+In your CLI, execute the command `ssh root@{your droplet IP address}`. This will open up a secure shell connection to your droplet.
 
 #### If you are prompted for the root password
 
@@ -34,7 +36,7 @@ After you type that in, you will gain access. Yay!
 Now type `exit` to log out and then execute the following command to add your public key to your remote machine. This will use SSH to handle authentication and you'll never need to enter a password again for **root**.
 
 ```
-cat ~/.ssh/id_rsa.pub | ssh root@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh root@{droplet ip address} "cat >> ~/.ssh/authorized_keys"
 ```
 
 ## Creating a user account
@@ -42,12 +44,12 @@ cat ~/.ssh/id_rsa.pub | ssh root@[your.ip.address.here] "cat >> ~/.ssh/authorize
 Your first step is to create an account for yourself.
 
 1. Decide on a username
-1. `mkdir /home/{{ username }}`
-1. `mkdir /home/{{ username }}/.ssh`
-1. `touch /home/{{ username }}/.ssh/authorized_keys`
-1. `useradd {{ username }} --home /home/{{ username }}`
-1. `passwd {{ username}}` and you'll need to enter in the password for the user twice
-1. Change the default shell with `chsh -s /bin/bash {{ username }}`
+1. `mkdir /home/{ username }`
+1. `mkdir /home/{ username }/.ssh`
+1. `touch /home/{ username }/.ssh/authorized_keys`
+1. `useradd { username } --home /home/{ username }`
+1. `passwd { username }` and you'll need to enter in the password for the user twice
+1. Change the default shell with `chsh -s /bin/bash { username }`
 
 ### Account security
 
@@ -59,14 +61,14 @@ Allow new account to gain administrative privileges.
 sudo visudo
 ```
 
-This will open up a file in the Nano file editor, not vim. You cna just start editing the file without the need to hit the `i` key.
+This will open up a file in the Nano file editor, not vim. You can just start editing the file without the need to hit the `i` key.
 
 Find the section where user privileges are specified. You should see a configuration section like this one. Add your new user account to be able to use `sudo`.
 
 ```
 # User privilege specification
 root    ALL=(ALL:ALL) ALL
-{{ username }}   ALL=(ALL) ALL
+{ username }   ALL=(ALL) ALL
 ```
 
 After you've added that line in...
@@ -77,21 +79,21 @@ After you've added that line in...
 
 ### Transferring ownership
 
-Set the new user as owner of the home directory: `chown -R {{ username }} /home/{{ username }}`
+Set the new user as owner of the home directory: `chown -R { username } /home/{ username }`
 
 #### Adding SSH key
 
 Open up a new terminal instance so that you have a command line on your local computer. Then execute the following command. This copies your public key from your local machine to the droplet.
 
 ```
-cat ~/.ssh/id_rsa.pub | ssh [username you created above]@[your.ip.address.here] "cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh {username you created above}@{droplet ip address} "cat >> ~/.ssh/authorized_keys"
 ```
 
 
 ## Using your account
 
 1. Terminate your remote SSH session as root with the `exit` command.
-1. Now create a new SSH session with your new account: `ssh {{ username }}@{{ ip }}`.
+1. Now create a new SSH session with your new account: `ssh { username }@{ ip address }`.
 
 You are now logged into your DigitalOcean virtual machine on your user account. You're ready to start installing things.
 
