@@ -119,6 +119,16 @@ sudo ufw status verbose
 
 Your server is now protected by a firewall that will deny **any** traffic other than SSH connections and web traffic.
 
+# Advanced
 
+## Install & Configure Nginx
 
+Nginx is a powerful web server that will allow you to serve your applications from your new VPS.
 
+Digital Ocean has a [wonderful tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-the-nginx-web-server-on-a-virtual-private-server) showing you how to set it up.
+
+## SSL and secure Nginx
+
+There's a [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04) that walks you through getting an SSL ceritificate from the Let's Encrypt* Certificate Authority. This is required for your web site to be trusted by web browsers, and use the `https` protocol for connections.
+
+Then it shows you how to set up the Nginx web server to use that certificate.
