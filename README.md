@@ -1,4 +1,4 @@
-# Setting yourself up on a VPS
+# Setting Up a Secure VPS
 
 > **Pro tip:** Everywhere you see curly braces in these instructions, for example `{enter ip address here}`, the braces are placeholders indicating that there should a value there. Do not type in the braces.
 
@@ -25,9 +25,9 @@ ssh-add ~/.ssh/id_rsa
 
 In your CLI, execute the command `ssh root@{your droplet IP address}`. This will open up a secure shell connection to your droplet.
 
-#### If you are prompted for the root password
+#### If you are prompted for the root password follow the directions in this section, otherwise, skip down to creating a user account
 
-> **Note:** If you were not prompted for your password, ignore this section
+> **Attention:** If you were not prompted for your password, ignore this section. Seriously. Move along. I'm not kidding.
 
 You will need to go back to the Digital Ocean site and click on your Droplet, and then the "Reset root password" button. They will email you a new root password.
 
@@ -100,9 +100,9 @@ You are now logged into your DigitalOcean virtual machine on your user account. 
 ## Base installs
 
 1. Run the command `sudo apt-get update`
-1. Install base packages `sudo apt-get install curl wget unzip git ufw redis-server nodejs npm`
+1. Install base packages `sudo apt-get install curl wget unzip git ufw nodejs npm nginx`
 1. Create symlink for Node: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
-1. Install useful NPM packages: `sudo npm install -g nave bower grunt-cli http-server express express-generator pm2`
+1. Install useful NPM packages: `sudo npm install -g nvm bower grunt-cli http-server express express-generator pm2`
 
 ## Firewall
 
@@ -119,11 +119,27 @@ sudo ufw status verbose
 
 Your server is now protected by a firewall that will deny **any** traffic other than SSH connections and web traffic.
 
-# Advanced
+# Getting Your Domain Pointed to Your Droplet
 
-## Install & Configure Nginx
+## Registrar DNS Steps
 
-Nginx is a powerful web server that will allow you to serve your applications from your new VPS.
+Once you have purchased your domain you can set it up to point at the server hosting your website. To do this you will need to tell your registrar where the server is to be resolved. There are three *name servers* that you will need to tell your registrar about. The GUI for each registrar is different, but you will need to enter the following on your registrar's control panel under name servers each on a new line.
+
+`ns1.digitalocean.com`  
+`ns2.digitalocean.com`  
+`ns3.digitalocean.com`
+
+## Pointing Web Traffic to Your Droplet
+
+You will need to create custom records for your droplet on Digital Ocean, so go back to your Digital Ocean account and go to your *Networking* tab on the control panel and create a record there as well. From the tab go to the *Domains* tab and add a domain. To do this you will need to put your domain (i.e. `you.com`) in the domain field and pick a droplet to host it on.
+
+You'll notice your new domain record will display beneath the creation form. Click on the domain entry and you'll see the DNS record form.
+
+You'll need to add an **A** record for your domain, which is chosen by default on this form. In the *Enter name* field, enter in the value of **www** and in the *Enter IP Address* field, enter in your Droplet's IP address.
+
+# Install & Configure Nginx
+
+Nginx is a powerful web server that will allow you to serve your applications from your new VPS. You already have nginx installed if you've followed the steps in this walk-through.
 
 Digital Ocean has a [wonderful tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-the-nginx-web-server-on-a-virtual-private-server) showing you how to set it up.
 
