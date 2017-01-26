@@ -5,7 +5,7 @@
 ## Prerequisites
 
 1. Register a domain name with [Google Domains](https://domains.google.com/about/), [Gandi.net](http://www.gandi.net/) or other registrar. Look at `.com`, and `.me` domains for your personal site.
-2. [Sign up](https://www.digitalocean.com/?refcode=47e5e578d1cd) for a DigitalOcean account.
+2. [Sign up](http://bit.ly/2k8fSCS) for a DigitalOcean account.
 
 ## Getting ready
 
