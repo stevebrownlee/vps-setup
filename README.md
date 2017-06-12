@@ -19,7 +19,7 @@
 Make sure that your private SSH key is currently loaded into your bash session by typing the following commands into your terminal.
 
 ```
-eval `ssh-agent`
+eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 ```
 
