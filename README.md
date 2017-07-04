@@ -139,12 +139,70 @@ You'll need to add an **A** record for your domain, which is chosen by default o
 
 # Install & Configure Nginx
 
-Nginx is a powerful web server that will allow you to serve your applications from your new VPS. You already have nginx installed if you've followed the steps in this walk-through.
+Nginx is a powerful web server that will allow you to serve your personal website, and your front-end capstone, from your new VPS. You already have nginx installed if you've followed the steps in this walk-through.
 
 Digital Ocean has a [wonderful tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-the-nginx-web-server-on-a-virtual-private-server) showing you how to set it up.
+
+If you want to serve your Django, Rails, or Node server-side capstone from your VPS, then read below about seting up gunicorn with nginx.
 
 ## SSL and secure Nginx
 
 There's a [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04) that walks you through getting an SSL ceritificate from the Let's Encrypt* Certificate Authority. This is required for your web site to be trusted by web browsers, and use the `https` protocol for connections.
 
 Then it shows you how to set up the Nginx web server to use that certificate.
+
+# gunicorn and nginx setup for Django app
+
+For example, if I wanted to deploy a Django REST Framework API project, I would create the following files.
+
+## systemd gunicorn service
+
+Create a service file for gunicorn that will keep the service running permanently.
+
+> /lib/systemd/system/gunicorn.service
+
+This is an example configuration that you would place in that file. The `WorkingDirectory` value is the directory that contains the entire Django project.
+
+```
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=chortlehoort
+Group=www-data
+WorkingDirectory=/full/path/to/django/project/directory
+ExecStart=/full/path/to/django/project/directory/bin/gunicorn -w 3 --bind 127.0.0.1:8000 thenameoftheproject.wsgi
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## nginx config for API
+
+Next, you configure nginx to route requests coming in on a sub-domain to the Django application. Create the following file.
+
+> /etc/nginx/sites-available/api
+
+It would contain the following configuration. You would replace the `server_name` value with the sub-domain that you created with an `A` record for your domain.
+
+```
+server {
+    listen 80;
+    server_name api.replacewithyourdomain.com;
+    access_log /var/log/nginx/api.log;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-NginX-Proxy true;
+
+        include proxy_params;
+        proxy_pass http://127.0.0.1:8000;
+    }
+}
+```
+
+> **Pro tip:** Make sure you make a symlink of the file in **sites-available** to the corresponding file in **sites-enabled**.
+>
+> `ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/api`
