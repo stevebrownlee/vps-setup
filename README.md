@@ -5,7 +5,7 @@
 ## Prerequisites
 
 1. Register a domain name with [Google Domains](https://domains.google.com/about/), [Gandi.net](http://www.gandi.net/) or other registrar. Look at `.com`, and `.me` domains for your personal site.
-2. [Sign up](http://bit.ly/2k8fSCS) for a DigitalOcean account.
+2. [Sign up](https://m.do.co/c/47e5e578d1cd) for a DigitalOcean account. You'll get a $10 credit, which let's you try it out for two months, for free. 
 
 ## Getting ready
 
@@ -23,21 +23,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 ```
 
-In your CLI, execute the command `ssh root@{your droplet IP address}`. This will open up a secure shell connection to your droplet.
-
-#### If you are prompted for the root password follow the directions in this section, otherwise, skip down to creating a user account
-
-> **Attention:** If you were not prompted for your password, ignore this section. Seriously. Move along. I'm not kidding.
-
-You will need to go back to the Digital Ocean site and click on your Droplet, and then the "Reset root password" button. They will email you a new root password.
-
-After you type that in, you will gain access. Yay!
-
-Now type `exit` to log out and then execute the following command to add your public key to your remote machine. This will use SSH to handle authentication and you'll never need to enter a password again for **root**.
-
-```
-cat ~/.ssh/id_rsa.pub | ssh root@{droplet ip address} "cat >> ~/.ssh/authorized_keys"
-```
+In your CLI, execute the command `ssh root@your.droplet.IP.address`. This will open up a secure shell connection to your droplet.
 
 ## Creating a user account
 
