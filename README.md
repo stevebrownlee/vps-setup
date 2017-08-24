@@ -69,12 +69,14 @@ Set the new user as owner of the home directory: `chown -R { username } /home/{ 
 
 #### Adding SSH key
 
-Open up a new terminal instance so that you have a command line on your local computer. Then execute the following command. This copies your public key from your local machine to the droplet.
-
-```
-cat ~/.ssh/id_rsa.pub | ssh {username you created above}@{droplet ip address} "cat >> ~/.ssh/authorized_keys"
-```
-
+1. Open up a new terminal instance so that you have a command line on your local computer. 
+1. In your shell, type `cat ~/.ssh/id_rsa.pub`. If you created a different SSH key name, type yours instead of `id_rsa.pub`.
+1. Copy the entire public key that got printed to the shell.
+1. Switch to your remote shell.
+1. `vim /home/{username}/.ssh/authorized_keys`
+1. Press `i`.
+1. Paste in your public key.
+1. `:x` to save and quit.
 
 ## Using your account
 
