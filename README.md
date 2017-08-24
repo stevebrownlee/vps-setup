@@ -129,7 +129,7 @@ You'll need to add an **A** record for your domain, which is chosen by default o
 
 Nginx is a powerful web server that will allow you to serve your personal website, and your front-end capstone, from your new VPS. You already have nginx installed if you've followed the steps in this walk-through.
 
-Digital Ocean has a [wonderful tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-the-nginx-web-server-on-a-virtual-private-server) showing you how to set it up.
+Digital Ocean has a [wonderful tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04) showing you how to set it up.
 
 If you want to serve your Django, Rails, or Node server-side capstone from your VPS, then read below about seting up gunicorn with nginx.
 
