@@ -18,9 +18,9 @@
 
 Make sure that your private SSH key is currently loaded into your bash session by typing the following commands into your terminal.
 
-```
+```sh
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/id_rsa  # If your SSH key name is different, use that
 ```
 
 In your CLI, execute the command `ssh root@your.droplet.IP.address`. This will open up a secure shell connection to your droplet.
