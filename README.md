@@ -90,7 +90,7 @@ You are now logged into your DigitalOcean virtual machine on your user account. 
 1. Run the command `sudo apt-get update`
 1. Install base packages `sudo apt-get install curl wget unzip git ufw nodejs npm nginx`
 1. Create symlink for Node: `sudo ln -s /usr/bin/nodejs /usr/bin/node`
-1. Install useful NPM packages: `sudo npm install -g nvm bower grunt-cli http-server express express-generator pm2`
+1. Install useful NPM packages: `sudo npm install -g grunt-cli http-server`
 
 ## Firewall
 
