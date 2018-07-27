@@ -5,7 +5,7 @@
 ## Prerequisites
 
 1. Register a domain name with [Google Domains](https://domains.google.com/about/), [Gandi.net](http://www.gandi.net/) or other registrar. Look at `.com`, and `.me` domains for your personal site.
-2. [Sign up](https://m.do.co/c/47e5e578d1cd) for a DigitalOcean account. You'll get a $10 credit, which let's you try it out for two months, for free. 
+2. [Sign up](https://m.do.co/c/47e5e578d1cd) for a DigitalOcean account. You'll get a $10 credit, which let's you try it out for two months, for free.
 
 ## Getting ready
 
@@ -69,7 +69,7 @@ Set the new user as owner of the home directory: `chown -R { username } /home/{ 
 
 #### Adding SSH key
 
-1. Open up a new terminal instance so that you have a command line on your local computer. 
+1. Open up a new terminal instance so that you have a command line on your local computer.
 1. In your shell, type `cat ~/.ssh/id_rsa.pub`. If you created a different SSH key name, type yours instead of `id_rsa.pub`.
 1. Copy the entire public key that got printed to the shell.
 1. Switch to your remote shell.
@@ -113,8 +113,8 @@ Your server is now protected by a firewall that will deny **any** traffic other 
 
 Once you have purchased your domain you can set it up to point at the server hosting your website. To do this you will need to tell your registrar where the server is to be resolved. There are three *name servers* that you will need to tell your registrar about. The GUI for each registrar is different, but you will need to enter the following on your registrar's control panel under name servers each on a new line.
 
-`ns1.digitalocean.com`  
-`ns2.digitalocean.com`  
+`ns1.digitalocean.com`
+`ns2.digitalocean.com`
 `ns3.digitalocean.com`
 
 ## Pointing Web Traffic to Your Droplet
@@ -130,6 +130,8 @@ You'll need to add an **A** record for your domain, which is chosen by default o
 Nginx is a powerful web server that will allow you to serve your personal website, and your front-end capstone, from your new VPS. You already have nginx installed if you've followed the steps in this walk-through.
 
 Digital Ocean has a [wonderful tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04) showing you how to set it up.
+
+> When you get to step 5 they show the directory where you clone your repo if it is a static personal site. `/var/www/html`
 
 If you want to serve your Django, Rails, or Node server-side capstone from your VPS, then read below about seting up gunicorn with nginx.
 
