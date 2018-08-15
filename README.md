@@ -144,6 +144,12 @@ Then it shows you how to set up the Nginx web server to use that certificate.
 
 For example, if I wanted to deploy a Django REST Framework API project, I would create the following files.
 
+## Setup
+
+1. Install gunicorn with `sudo apt-get install gunicorn`
+1. Clone your Django project into a sub-directory of your choosing in your home directory.
+1. Copy the path to the project directory using `pwd`. You will need the path below.
+
 ## systemd gunicorn service
 
 Create a service file for gunicorn that will keep the service running permanently.
