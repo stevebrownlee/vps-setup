@@ -34,7 +34,8 @@ Your first step is to create an account for yourself.
 1. `mkdir /home/{ username }/.ssh`
 1. `touch /home/{ username }/.ssh/authorized_keys`
 1. `useradd { username } --home /home/{ username }`
-1. `passwd { username }` and you'll need to enter in the password for the user twice
+1. `passwd { username }` then press enter.
+1. You will be prompted to enter in the password for this account twice
 1. Change the default shell with `chsh -s /bin/bash { username }`
 
 ### Account security
@@ -76,6 +77,7 @@ Set the new user as owner of the home directory: `chown -R { username } /home/{ 
 1. `vim /home/{username}/.ssh/authorized_keys`
 1. Press `i`.
 1. Paste in your public key.
+1. Press `esc`
 1. `:x` to save and quit.
 
 ## Using your account
