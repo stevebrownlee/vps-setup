@@ -61,8 +61,8 @@ root    ALL=(ALL:ALL) ALL
 After you've added that line in...
 
 1. Hit `ctrl+x` to exit.
-1. You'll be prompted to save the file, so just hit enter.
-1. Then press `y` to verify the save.
+1. You'll be prompted to save the file. Press `y` to verify the save.
+1. Hit enter
 
 ### Transferring ownership
 
