@@ -5,7 +5,7 @@
 ## Prerequisites
 
 1. Register a domain name with [Google Domains](https://domains.google.com/about/), [Gandi.net](http://www.gandi.net/) or other registrar. Look at `.com`, and `.me` domains for your personal site.
-2. [Sign up](https://m.do.co/c/47e5e578d1cd) for a DigitalOcean account. You'll get a $10 credit, which let's you try it out for two months, for free.
+2. [Sign up](https://m.do.co/c/47e5e578d1cd) for a DigitalOcean account. You'll get a $50 credit for 30 days, which let's you try all of their services for free for a month.
 
 ## Getting ready
 
