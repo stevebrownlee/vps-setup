@@ -166,7 +166,7 @@ Description=gunicorn daemon
 After=network.target
 
 [Service]
-User=chortlehoort
+User={your username}
 Group=www-data
 WorkingDirectory=/full/path/to/django/project/directory
 ExecStart=/full/path/to/django/project/directory/bin/gunicorn -w 3 --bind 127.0.0.1:8000 thenameoftheproject.wsgi
