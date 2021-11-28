@@ -162,14 +162,22 @@ This is an example configuration that you would place in that file. The `Working
 
 ```
 [Unit]
-Description=gunicorn daemon
+Description={yourProject} gunicorn daemon
 After=network.target
 
 [Service]
-User={your username}
+Environment="DJANGO_SECRET_KEY={use a password generator and place the strong password here}"
+Environment="DEBUG=True"
+Environment="DEVELOPMENT_MODE=False"
+User={your username here}
 Group=www-data
+
 WorkingDirectory=/full/path/to/django/project/directory
-ExecStart=/full/path/to/django/project/directory/bin/gunicorn -w 3 --bind 127.0.0.1:8000 thenameoftheproject.wsgi
+# Example: /home/steve/bangazon-api
+
+ExecStart={path to gunicorn executable} -w 3 --bind 127.0.0.1:8000 {project name}.wsgi
+# Example: ExecStart=/home/steve/.local/share/virtualenvs/bangazon-api-23yxXEvw/bin/gunicorn -w 3 --bind 127.0.0.1:8000 BangazonPlatform.wsgi
+
 PrivateTmp=true
 
 [Install]
@@ -203,3 +211,36 @@ server {
 > **Pro tip:** Make sure you make a symlink of the file in **sites-available** to the corresponding file in **sites-enabled**.
 >
 > `ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/api`
+
+## Starting Your Django Project Service
+
+Since you added a new service, you need to run this command. If you ever modify the `gunicorn.service` file, you need to run it again.
+
+```sh
+sudo systemctl daemon-reload
+```
+
+Lastly, start the service that uses gunicorn to run your application.
+
+```sh
+sudo service gunicorn start
+```
+
+To see if it launched correctly, run the following command.
+
+```sh
+sudo journalctl -f -u gunicorn
+```
+
+If everything worked, you should see three lines at the end of the file that have something like "Booting worker with pid: 000000" in them.
+
+```sh
+Nov 28 00:17:36 gunicorn[38735]: [2021-11-28 00:17:36 +0000] [38735] [INFO] Starting gunicorn 20.1.0
+Nov 28 00:17:36 gunicorn[38735]: [2021-11-28 00:17:36 +0000] [38735] [INFO] Listening at: http://127.0.0.1:8000 (38735)
+Nov 28 00:17:36 gunicorn[38735]: [2021-11-28 00:17:36 +0000] [38735] [INFO] Using worker: sync
+Nov 28 00:17:36 gunicorn[38761]: [2021-11-28 00:17:36 +0000] [38761] [INFO] Booting worker with pid: 38761
+Nov 28 00:17:36 gunicorn[38762]: [2021-11-28 00:17:36 +0000] [38762] [INFO] Booting worker with pid: 38762
+Nov 28 00:17:36 gunicorn[38763]: [2021-11-28 00:17:36 +0000] [38763] [INFO] Booting worker with pid: 38763
+```
+
+If you don't see this, ask for help.
